@@ -1,0 +1,53 @@
+{
+	"scopeName": "source.mded",
+	"patterns": [{ "include": "#general" }],
+	"repository": {
+	  "general" :{
+		"patterns": [{ "include": "#expression" }]
+	  },
+	  "expression": {
+		"begin": "^\\w+",
+		"end": "$",
+		"beginCaptures": {
+		  "0": { "name": "markup.bold.start.mde" }
+		},
+		"endCaptures": {
+		  "0": { "name": "punctuation.endline.mde" }
+		},
+		"name" : "expression.mded",
+		"patterns": [{ "include": "#params" }, { "include":"#content"}]
+	  },
+	  "params": {
+		"begin": "\\(",
+		"end": "\\)",
+		"beginCaptures": {
+		  "0": { "name": "keyword.start.mde" }
+		},
+		"endCaptures": {
+		  "0": { "name": "keyword.endline.mde" }
+		},
+		"name" : "params.mde",
+		"patterns": [{ "include": "#word" }]
+	  },
+	  "word":{
+		  "match": "\\w+",
+		  "name": "markup.word"
+	  },
+	"content": {
+		"begin": "\\{",
+		"end": "\\}",
+		"beginCaptures": {
+		  "0": { "name": "keyword.start.mded" }
+		},
+		"endCaptures": {
+		  "0": { "name": "keyword.endline.mded" }
+		},
+		"name" : "content.mded",
+		"patterns": [{ "include": "#variable" }]
+	},
+	"variable": {
+		"name": "entity.other.attribute-name.variable.mded",
+		"match": "\\s*\\{\\w+\\}\\s*"
+	}
+  }
+}

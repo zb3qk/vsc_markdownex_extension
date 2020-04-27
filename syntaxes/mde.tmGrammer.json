@@ -1,0 +1,62 @@
+{
+  "scopeName": "source.mde",
+  "injectionSelector": "L:text.html.markdown",
+  "patterns": [{ "include": "#general" }],
+  "repository": {
+    "general" :{
+      "patterns": [{ "include": "#expression" }]
+    },
+    "expression": {
+      "begin": "^\\$",
+      "end": "$",
+      "beginCaptures": {
+        "0": { "name": "keyword.start.mde" }
+      },
+      "endCaptures": {
+        "0": { "name": "punctuation.endline.mde" }
+      },
+      "name" : "expression.mde",
+      "patterns": [{ "include": "#functionMultiParameter" }, { "include": "#functionOneParameter" }]
+    },
+    "functionOneParameter": {
+      "begin": "\\w+",
+      "end": "$",
+      "beginCaptures": {
+        "0": { "name": "markup.bold.name.function.oneParam.mde" }
+      },
+      "endCaptures": {
+        "0": { "name": "blankspace.function.endline.mde" }
+      },
+      "name": "function.one.group",
+      "patterns": [{ "include": "#word" }]
+    },
+    "functionMultiParameter": {
+      "begin": "\\w+\\s*\\(",
+      "end": "\\)\\s*$",
+      "beginCaptures": {
+        "0": { "name": "markup.bold.name.function.multiParam.mde" }
+      },
+      "endCaptures": {
+        "0": { "name": "markup.bold.blankspace.function.endline.mde" }
+      },
+      "name": "function.multi.group",
+      "patterns": [{ "include": "#word" }, { "include": "#quote-expression"}]
+    },
+    "word": {
+      "name": "name.mde",
+      "match": "\\w+"
+    },
+    "quote-expression": {
+      "begin": "\"",
+      "end": "\"",
+      "beginCaptures": {
+        "0": { "name": "string.paren.open" }
+      },
+      "endCaptures": {
+        "0": { "name": "string.paren.close" }
+      },
+      "name": "content.group",
+      "patterns": []
+    }
+  }
+}
